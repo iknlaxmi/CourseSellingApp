@@ -7,7 +7,7 @@ import { useRecoilValue } from "recoil";
 const CourseDetails = () => {
   const location = useLocation();
   const { course } = location.state;
-  const email = useRecoilValue(emailState);
+  // const email = useRecoilValue(emailState);
 
   console.log(course);
 
