@@ -1,7 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
 import loginImage from "../assets/login-image.jpg";
-import NavBar from "../components/NavBar";
+import NavBar from "./NavBar";
 const Landing = () => {
   return (
     <>

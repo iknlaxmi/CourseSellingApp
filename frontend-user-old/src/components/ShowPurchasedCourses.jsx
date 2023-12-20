@@ -1,19 +1,15 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 
-import { useNavigate, useLocation } from "react-router-dom";
-import CourseDetails from "./CourseDetails";
-
-import NavBarLogin from "../components/NavBarLogin";
 import axios from "axios";
-import CourseCard from "../components/CourseCard";
+
 import { useRecoilValue } from "recoil";
 import { emailState } from "./Login";
-const ShowCourses = () => {
+import NavBarLogin from "./NavBarLogin";
+import CourseCard from "./CourseCard";
+
+const ShowPurchasedCourses = () => {
   const email = useRecoilValue(emailState);
-  console.log("show courses email", email);
-
-  const [courses, setCourses] = useState([]);
-
+  const [purchasedCourses, setPurchasedCourses] = useState([]);
   //get all courses
   useEffect(() => {
     fetchCourses();
@@ -26,31 +22,31 @@ const ShowCourses = () => {
       "Authorization": `Bearer ${localStorage.getItem(email)}`,
     };
     axios
-      .get("http://localhost:3000/users/courses", {
+      .get("http://localhost:3000/users/purchasedCourses", {
         headers: headers,
       })
       .then((response) => {
         const responseData = response.data;
         console.log(responseData);
-        setCourses(responseData.courses);
+        setPurchasedCourses(responseData.purchasedCourses);
       })
       .catch((error) => {
         console.log(error);
       });
   };
-
   return (
-    <div>
+    <>
       <NavBarLogin />
+
       <h1 className="m-4 text-center p-4 block  text-2xl antialiased font-semibold leading-tight tracking-normal text-inherit">
-        LATEST COURSES
+        PURCHASED COURSES
       </h1>
       <div className="sm:flex sm:flex-row sm:flex-wrap">
-        {courses.map((c) => (
+        {purchasedCourses.map((c) => (
           <CourseCard course={c} />
         ))}
       </div>
-    </div>
+    </>
   );
 };
-export default ShowCourses;
+export default ShowPurchasedCourses;

@@ -1,15 +1,19 @@
-import { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
+import { useNavigate, useLocation } from "react-router-dom";
+import CourseDetails from "./CourseDetails";
+
+import NavBarLogin from "./NavBarLogin";
 import axios from "axios";
-
+import CourseCard from "./CourseCard";
 import { useRecoilValue } from "recoil";
 import { emailState } from "./Login";
-import NavBarLogin from "../components/NavBarLogin";
-import CourseCard from "../components/CourseCard";
-
-const ShowPurchasedCourses = () => {
+const ShowCourses = () => {
   const email = useRecoilValue(emailState);
-  const [purchasedCourses, setPurchasedCourses] = useState([]);
+  console.log("show courses email", email);
+
+  const [courses, setCourses] = useState([]);
+
   //get all courses
   useEffect(() => {
     fetchCourses();
@@ -22,31 +26,31 @@ const ShowPurchasedCourses = () => {
       "Authorization": `Bearer ${localStorage.getItem(email)}`,
     };
     axios
-      .get("http://localhost:3000/users/purchasedCourses", {
+      .get("http://localhost:3000/users/courses", {
         headers: headers,
       })
       .then((response) => {
         const responseData = response.data;
         console.log(responseData);
-        setPurchasedCourses(responseData.purchasedCourses);
+        setCourses(responseData.courses);
       })
       .catch((error) => {
         console.log(error);
       });
   };
-  return (
-    <>
-      <NavBarLogin />
 
+  return (
+    <div>
+      <NavBarLogin />
       <h1 className="m-4 text-center p-4 block  text-2xl antialiased font-semibold leading-tight tracking-normal text-inherit">
-        PURCHASED COURSES
+        LATEST COURSES
       </h1>
       <div className="sm:flex sm:flex-row sm:flex-wrap">
-        {purchasedCourses.map((c) => (
+        {courses.map((c) => (
           <CourseCard course={c} />
         ))}
       </div>
-    </>
+    </div>
   );
 };
-export default ShowPurchasedCourses;
+export default ShowCourses;

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import ShowCourses from "./ShowCourses";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import NavBar from "../components/NavBar";
+import NavBar from "./NavBar";
 import { Navigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { atom } from "recoil";
