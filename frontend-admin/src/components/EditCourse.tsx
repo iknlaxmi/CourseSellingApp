@@ -31,7 +31,7 @@ const EditCourse: React.FC = () => {
     };
     axios
       .put(
-        `http://52.73.145.113:3000/admin/courses/${course._id}`,
+        `https://52.73.145.113:3000/admin/courses/${course._id}`,
         new_course,
 
         { headers: headers }

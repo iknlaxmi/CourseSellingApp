@@ -9,7 +9,7 @@ function Register() {
 
   const handleSubmit = () => {
     axios
-      .post("http://localhost:3000/admin/signup", {
+      .post("https://52.73.145.113:3000/admin/signup", {
         username: email,
         password: password,
       })

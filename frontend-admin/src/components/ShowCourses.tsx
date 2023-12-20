@@ -23,7 +23,7 @@ function ShowCourses() {
       "Authorization": `Bearer ${localStorage.getItem(email)}`,
     };
     axios
-      .get("http://52.73.145.113:3000/admin/courses", {
+      .get("https://52.73.145.113:3000/admin/courses", {
         headers: headers,
       })
       .then((response) => {
