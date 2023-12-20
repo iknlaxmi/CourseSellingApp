@@ -38,7 +38,7 @@ function Login() {
     };
 
     axios
-      .post("http://localhost:3000/admin/login", {
+      .post("http://52.73.145.113:3000/admin/login", {
         headers: headers,
       })
       .then((response) => {

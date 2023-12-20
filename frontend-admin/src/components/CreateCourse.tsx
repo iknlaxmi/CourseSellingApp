@@ -31,7 +31,7 @@ const CreateCourse: React.FC = () => {
     };
     axios
       .post(
-        "http://localhost:3000/admin/courses",
+        "http://52.73.145.113:3000/admin/courses",
         new_course,
 
         { headers: headers }
